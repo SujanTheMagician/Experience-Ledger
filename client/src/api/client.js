@@ -2,7 +2,10 @@
 // error messages, and session-expiry handling all live here instead of being
 // copy-pasted into each api/*.js module.
 
-export const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// VITE_API_URL="/" means "same origin": production calls /api/... on the Netlify
+// site, and public/_redirects proxies that to Render. Trailing slashes are
+// stripped so "/" becomes "" and paths never end up with a double slash.
+export const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
 export const TOKEN_KEY = 'el_token';
 export const UNAUTHORIZED_EVENT = 'el:unauthorized';
 

@@ -1,1 +1,9 @@
+# Proxy API and evidence-file requests through Netlify so the browser only ever
+# talks to this site's own origin. Some ISPs block *.onrender.com outright, which
+# made the app show "Cannot reach the server" for those users. These rules must
+# stay ABOVE the SPA fallback, because Netlify uses the first rule that matches.
+/api/*      https://sujan-capstone-experienceledger.onrender.com/api/:splat      200
+/uploads/*  https://sujan-capstone-experienceledger.onrender.com/uploads/:splat  200
+
+# SPA fallback: React Router handles every other path on the client.
 /*    /index.html   200
