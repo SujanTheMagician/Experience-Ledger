@@ -139,7 +139,7 @@ PRD.md HLD.md LLD.md   Product and design documents
 
 ## Deploying
 
-- **Client → Netlify:** base directory `client`, build `npm run build`, publish `client/dist`, env `VITE_API_URL=<Render API URL>`. `public/_redirects` handles client-side routes.
+- **Client → Netlify:** base directory `client`, build `npm run build`, publish `client/dist`. `client/netlify.toml` sets `VITE_API_URL=/`, and `public/_redirects` proxies `/api/*` and `/uploads/*` to the Render API, so browsers only ever talk to the Netlify origin. This matters because some ISPs block `*.onrender.com`. If the Render URL changes, update `_redirects`. The same file also handles client-side routes.
 - **API → Render:** root `server`, start `npm start`, env `DATABASE_URL`, `JWT_SECRET`, `CLIENT_URL`. Run `npm run db:init` once after each schema change. It is idempotent.
 
 ## Project timeline

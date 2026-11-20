@@ -1,0 +1,7 @@
+# Netlify build settings for the client. The site's base directory is `client`,
+# so Netlify reads this file from here.
+[build.environment]
+  # Same-origin API: requests go to /api/* on the Netlify site, and
+  # public/_redirects proxies them to the Render API. This also covers deploy
+  # previews, which have their own origins.
+  VITE_API_URL = "/"
